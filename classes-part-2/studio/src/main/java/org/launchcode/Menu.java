@@ -1,32 +1,51 @@
-package org.launchcode;
+package org.example;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
-public class Menu {
-    private Date lastUpdated;
-    private ArrayList<MenuItem> items;
+public class Menu
+{
 
-    public Menu(Date d, ArrayList<MenuItem> i) {
-        this.lastUpdated = d;
-        this.items = i;
-    }
+    private List<MenuItem> menuItems = new ArrayList<>();
+    private LocalDate lastUpdated;
 
-    public void setLastUpdated(Date lastUpdated) {
+    public Menu(List<MenuItem> menuItems, LocalDate lastUpdated){
+        this.menuItems = menuItems;
         this.lastUpdated = lastUpdated;
     }
 
-    public void setItems(ArrayList<MenuItem> items) {
-        this.items = items;
+    public void setLastUpdated(LocalDate lastUpdated){
+        this.lastUpdated = lastUpdated;
     }
 
-    public Date getLastUpdated() {
-        return lastUpdated;
+    public LocalDate getLastUpdated(){
+        return this.lastUpdated;
     }
 
-    public ArrayList<MenuItem> getItems() {
-        return items;
+    public List<MenuItem> getMenuItems(){
+        return this.menuItems;
+    }
+
+    public void addMenuItem(MenuItem menuItem){
+        this.menuItems.add(menuItem);
+    }
+
+    public void removeMenuItem(MenuItem menuItem) {
+        this.menuItems.remove(menuItem);
+    }
+
+    @Override
+    public String toString(){
+        String output = "Today's Menu \n";
+        // Loop through each menu item
+        for(MenuItem item: this.menuItems){
+            // Use the toString method on the MenuItem to add the item to the output
+            output += item + "\n";
+        }
+        // Add the last updated
+        output += "Last updated: " + this.lastUpdated;
+        return output;
     }
 }
-
 
